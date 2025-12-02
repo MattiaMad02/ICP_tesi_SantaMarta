@@ -1,0 +1,147 @@
+import open3d as o3d
+import numpy as np
+import pandas as pd
+import os
+import time
+
+# -------------------------------------------------------
+#  FUNZIONE UNIVERSALE FGR COMPATIBILE CON TUTTE LE VERSIONI
+# -------------------------------------------------------
+
+def universal_fgr(source_down, target_down, source_fpfh, target_fpfh, dist_threshold):
+    reg_module = o3d.pipelines.registration
+
+    # Lista funzioni possibili nelle varie versioni di Open3D
+    possible_functions = [
+        "registration_fgr_based_on_feature_matching",
+        "registration_fast_based_on_feature_matching",
+    ]
+
+    for fn_name in possible_functions:
+        if hasattr(reg_module, fn_name):
+            print(f"\n[✔] Found FGR function: {fn_name}")
+            fgr_fn = getattr(reg_module, fn_name)
+            break
+    else:
+        raise RuntimeError(
+            "\n❌ Nessuna funzione FGR trovata nella tua versione di Open3D!\n"
+            "Versione: " + str(o3d.__version__)
+        )
+
+    # Opzioni FGR
+    option = reg_module.FastGlobalRegistrationOption(
+        maximum_correspondence_distance=dist_threshold
+    )
+
+    # Esegui FGR
+    result = fgr_fn(
+        source_down, target_down,
+        source_fpfh, target_fpfh,
+        option
+    )
+
+    return result
+
+
+# -------------------------------------------------------
+# PREPROCESSING (downsample + normals + FPFH)
+# -------------------------------------------------------
+
+def preprocess(pcd, voxel_size):
+    pcd_down = pcd.voxel_down_sample(voxel_size)
+
+    pcd_down.estimate_normals(
+        o3d.geometry.KDTreeSearchParamHybrid(radius=voxel_size * 2.0, max_nn=30)
+    )
+
+    fpfh = o3d.pipelines.registration.compute_fpfh_feature(
+        pcd_down,
+        o3d.geometry.KDTreeSearchParamHybrid(radius=voxel_size * 5.0, max_nn=120)
+    )
+    return pcd_down, fpfh
+
+
+# -------------------------------------------------------
+#  MAIN SCRIPT
+# -------------------------------------------------------
+
+start_time = time.time()
+
+project_folder = os.path.dirname(__file__)
+folder = os.path.join(project_folder, "pointclouds")
+
+df_file = os.path.join(project_folder, "pointclouds_ordered.txt")
+df = pd.read_csv(df_file, sep="\t")
+
+df["file"] = df["base_name"].apply(lambda x: os.path.join(folder, x + ".ply"))
+
+target_file = df.loc[0, "file"]
+source_files = df.loc[1:, "file"].tolist()
+
+print(f"Open3D version detected: {o3d.__version__}")
+print("Target file:", target_file)
+
+# Parametri (ottimizzati per indoor)
+voxel_size = 0.05
+dist_threshold = voxel_size * 1.5
+
+# Carica target iniziale
+target_raw = o3d.io.read_point_cloud(target_file)
+target_down, target_fpfh = preprocess(target_raw, voxel_size)
+
+# Mappa cumulativa
+map_pcd = target_raw.voxel_down_sample(voxel_size)
+
+# Cartella output
+save_folder = os.path.join(project_folder, "fgr_universal_results")
+os.makedirs(save_folder, exist_ok=True)
+
+summary = []
+
+print("\n=== FGR UNIVERSALE START ===\n")
+
+for i, file in enumerate(source_files):
+    print(f"\nFrame {i+1}/{len(source_files)} --> {file}")
+
+    source_raw = o3d.io.read_point_cloud(file)
+    source_down, source_fpfh = preprocess(source_raw, voxel_size)
+
+    # -------- FGR universale --------
+    reg = universal_fgr(
+        source_down, target_down, source_fpfh, target_fpfh, dist_threshold
+    )
+
+    print(f"  Fitness FGR: {reg.fitness:.4f}")
+    print(f"  RMSE FGR:    {reg.inlier_rmse:.4f}")
+
+    T = reg.transformation
+
+    # Applica trasformazione
+    source_raw.transform(T)
+
+    # Aggiorna mappa cumulativa
+    map_pcd += source_raw
+    map_pcd = map_pcd.voxel_down_sample(voxel_size)
+
+    # Salva risultati
+    o3d.io.write_point_cloud(os.path.join(save_folder, f"aligned_{i+1}.ply"), source_raw)
+    np.savetxt(os.path.join(save_folder, f"T_fgr_{i+1}.txt"), T)
+
+    summary.append(f"Frame {i+1}: Fitness={reg.fitness:.4f}, RMSE={reg.inlier_rmse:.4f}\n")
+
+    # Aggiorna target (fondamentale)
+    target_down, target_fpfh = preprocess(map_pcd, voxel_size)
+
+# Salva mappa finale
+o3d.io.write_point_cloud(os.path.join(save_folder, "merged_fgr_map.ply"), map_pcd)
+
+# Summary
+with open(os.path.join(save_folder, "fgr_summary.txt"), "w") as f:
+    f.writelines(summary)
+
+total = time.time() - start_time
+print(f"\nFGR COMPLETATO in {total:.2f} secondi")
+print(f"Risultati salvati in: {save_folder}")
+
+# Visualizza
+o3d.visualization.draw_geometries([map_pcd])
