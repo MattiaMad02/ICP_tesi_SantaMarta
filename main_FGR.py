@@ -11,7 +11,7 @@ def universal_fgr(source_down, target_down, source_fpfh, target_fpfh, dist_thres
     ]
     for fn_name in possible_functions:
         if hasattr(reg_module, fn_name):
-            print(f"\n[✔] Found FGR function: {fn_name}")
+            print(f"\nFound FGR function: {fn_name}")
             fgr_fn = getattr(reg_module, fn_name)
             break
     else:
