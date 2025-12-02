@@ -2,8 +2,8 @@ import open3d as o3d
 import numpy as np
 import os
 base_folder = os.path.dirname(__file__)
-map_no_icp_path = os.path.join(base_folder,"complete_map.ply")  # mappa originale
-map_icp_path = os.path.join(base_folder, "icp_results", "merged_icp_map.ply")  # mappa ICP corretta
+map_no_icp_path = os.path.join(base_folder,"complete_map.ply")
+map_icp_path = os.path.join(base_folder, "icp_results", "merged_icp_map.ply")
 if not os.path.exists(map_no_icp_path):
    raise FileNotFoundError(f"Mappa originale non trovata: {map_no_icp_path}")
 if not os.path.exists(map_icp_path):
