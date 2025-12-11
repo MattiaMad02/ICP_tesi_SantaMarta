@@ -22,7 +22,6 @@ threshold = 0.1
 nb_neighbors = 20
 std_ratio = 2.0
 def preprocess_frame(pcd, voxel, nb_neighbors, std_ratio):
-    """Downsample, calcola normali e rimuove outlier statistici"""
     pcd_down = pcd.voxel_down_sample(voxel)
     pcd_down.estimate_normals()
     pcd_clean, _ = pcd_down.remove_statistical_outlier(nb_neighbors=nb_neighbors,
