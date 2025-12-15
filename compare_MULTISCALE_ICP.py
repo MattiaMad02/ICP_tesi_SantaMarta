@@ -2,16 +2,16 @@ import open3d as o3d
 import numpy as np
 import os
 base_folder = os.path.dirname(__file__)
-map_no_icp_path = os.path.join(base_folder,"gicp_cleaned_results", "merged_gicp_map_cleaned.ply")
-map_icp_path = os.path.join(base_folder, "icp_results", "merged_icp_map.ply")
+map_no_icp_path = os.path.join(base_folder, "multiscale_icp_robust","merged_multiscale_icp_map_robust.ply")  # mappa ransac
+map_icp_path = os.path.join(base_folder, "icp_results", "merged_icp_map.ply")  # mappa ICP corretta
 if not os.path.exists(map_no_icp_path):
-   raise FileNotFoundError(f"Mappa GICP non trovata: {map_no_icp_path}")
+   raise FileNotFoundError(f"Mappa Multiscale non trovata: {map_no_icp_path}")
 if not os.path.exists(map_icp_path):
     raise FileNotFoundError(f"Mappa ICP non trovata: {map_icp_path}")
 map_no_icp = o3d.io.read_point_cloud(map_no_icp_path)
 map_icp = o3d.io.read_point_cloud(map_icp_path)
 print("Mappe caricate correttamente.")
-print(f" - Mappa GICP: {len(map_no_icp.points)} punti")
+print(f" - Mappa RANSAC: {len(map_no_icp.points)} punti")
 print(f" - Mappa ICP: {len(map_icp.points)} punti")
 distances = map_no_icp.compute_point_cloud_distance(map_icp)
 distances = np.asarray(distances)
@@ -23,6 +23,6 @@ print(f" - RMSE medio: {rmse:.6f}")
 print(f" - Distanza media: {mean_dist:.6f}")
 print(f" - Distanza massima: {max_dist:.6f}")
 map_no_icp.paint_uniform_color([1, 0, 0])
-map_icp.paint_uniform_color([0, 0, 1])
-print("\n Visualizzazione: ROSSO = GICP | BLU = ICP")
+map_icp.paint_uniform_color([0, 1, 0])
+print("\n Visualizzazione: ROSSO = MULTISCALE | VERDE = ICP")
 o3d.visualization.draw_geometries([map_no_icp, map_icp])
