@@ -63,3 +63,18 @@ with open(summary_file, "w") as f:
 print(f"\nICP completato in {total_time:.2f} secondi")
 print(f"Risultati salvati in: {save_folder}")
 o3d.visualization.draw_geometries([map_pcd_cleaned])
+screenshot_path = os.path.join(save_folder, "merged_icp_map.png")
+vis = o3d.visualization.Visualizer()
+vis.create_window(
+    window_name="ICP Result",
+    width=1920,
+    height=1080,
+    visible=True
+)
+vis.add_geometry(map_pcd_cleaned)
+vis.poll_events()
+vis.update_renderer()
+time.sleep(0.5)  # IMPORTANTISSIMO su Windows/Linux
+vis.capture_screen_image(screenshot_path)
+vis.destroy_window()
+print(f"Screenshot salvato in: {screenshot_path}")
