@@ -71,8 +71,6 @@ merged_pcd = target_pcd
 for aligned_file in aligned_files:
     src_pcd = o3d.io.read_point_cloud(aligned_file)
     merged_pcd += src_pcd
-
-# Facoltativo: downsample per ridurre densità e rumore
 merged_pcd = merged_pcd.voxel_down_sample(voxel_size)
 merged_file = os.path.join(out_folder, "merged_ransac_map.ply")
 o3d.io.write_point_cloud(merged_file, merged_pcd)
@@ -88,25 +86,17 @@ if failed_frames:
     print("Frames failed:", failed_frames)
 print("Results saved in:", out_folder)
 o3d.visualization.draw_geometries([merged_pcd])
-# --- Visualizzazione e screenshot automatico ---
 vis = o3d.visualization.Visualizer()
 vis.create_window(visible=True)
 vis.add_geometry(merged_pcd)
-
-# Migliora un po' la visualizzazione
 opt = vis.get_render_option()
-opt.background_color = np.asarray([1, 1, 1])  # sfondo bianco (meglio per tesi)
+opt.background_color = np.asarray([1, 1, 1])
 opt.point_size = 2.0
-
 vis.poll_events()
 vis.update_renderer()
-
-# Salva screenshot
 screenshot_path = os.path.join(out_folder, "merged_ransac_map.png")
 vis.capture_screen_image(screenshot_path)
-
 print(f"Screenshot salvato in: {screenshot_path}")
-
 vis.run()
 vis.destroy_window()
 

@@ -73,7 +73,7 @@ vis.create_window(
 vis.add_geometry(map_pcd)
 vis.poll_events()
 vis.update_renderer()
-time.sleep(0.5)  # IMPORTANTISSIMO su Windows/Linux
+time.sleep(0.5)
 vis.capture_screen_image(screenshot_path)
 vis.destroy_window()
 print(f"Screenshot salvato in: {screenshot_path}")

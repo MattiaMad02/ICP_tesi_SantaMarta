@@ -82,3 +82,17 @@ total = time.time() - start_time
 print(f"\nFGR COMPLETATO in {total:.2f} secondi")
 print(f"Risultati salvati in: {save_folder}")
 o3d.visualization.draw_geometries([map_pcd])
+vis = o3d.visualization.Visualizer()
+vis.create_window(visible=True)
+vis.add_geometry(map_pcd)
+opt = vis.get_render_option()
+opt.background_color = np.asarray([1, 1, 1])  # sfondo bianco
+opt.point_size = 2.0
+vis.poll_events()
+vis.update_renderer()
+screenshot_path = os.path.join(save_folder, "merged_fgr_map.png")
+vis.capture_screen_image(screenshot_path)
+print(f"Screenshot FGR salvato in: {screenshot_path}")
+vis.run()
+vis.destroy_window()
+

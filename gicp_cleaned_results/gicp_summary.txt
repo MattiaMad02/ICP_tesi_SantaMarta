@@ -57,4 +57,4 @@ Frame 56: Fitness=0.7022, RMSE=0.0627
 Frame 57: Fitness=0.7340, RMSE=0.0613
 Frame 58: Fitness=0.8413, RMSE=0.0576
 
-Tempo totale esecuzione: 21.50 secondi
+Tempo totale esecuzione: 41.51 secondi
