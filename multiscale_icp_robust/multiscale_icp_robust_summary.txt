@@ -1,60 +1,60 @@
-Frame 1: OK, fitness=nan, RMSE=nan
-Frame 2: OK, fitness=nan, RMSE=nan
-Frame 3: OK, fitness=nan, RMSE=nan
-Frame 4: OK, fitness=nan, RMSE=nan
-Frame 5: OK, fitness=nan, RMSE=nan
-Frame 6: OK, fitness=nan, RMSE=nan
-Frame 7: OK, fitness=nan, RMSE=nan
-Frame 8: OK, fitness=nan, RMSE=nan
-Frame 9: OK, fitness=nan, RMSE=nan
-Frame 10: OK, fitness=nan, RMSE=nan
-Frame 11: OK, fitness=nan, RMSE=nan
-Frame 12: OK, fitness=nan, RMSE=nan
-Frame 13: OK, fitness=nan, RMSE=nan
-Frame 14: OK, fitness=nan, RMSE=nan
-Frame 15: OK, fitness=nan, RMSE=nan
-Frame 16: OK, fitness=nan, RMSE=nan
-Frame 17: OK, fitness=nan, RMSE=nan
-Frame 18: OK, fitness=nan, RMSE=nan
-Frame 19: OK, fitness=nan, RMSE=nan
-Frame 20: OK, fitness=nan, RMSE=nan
-Frame 21: OK, fitness=nan, RMSE=nan
-Frame 22: OK, fitness=nan, RMSE=nan
-Frame 23: OK, fitness=nan, RMSE=nan
-Frame 24: OK, fitness=nan, RMSE=nan
-Frame 25: OK, fitness=nan, RMSE=nan
-Frame 26: OK, fitness=nan, RMSE=nan
-Frame 27: OK, fitness=nan, RMSE=nan
-Frame 28: OK, fitness=nan, RMSE=nan
-Frame 29: OK, fitness=nan, RMSE=nan
-Frame 30: OK, fitness=nan, RMSE=nan
-Frame 31: OK, fitness=nan, RMSE=nan
-Frame 32: OK, fitness=nan, RMSE=nan
-Frame 33: OK, fitness=nan, RMSE=nan
-Frame 34: OK, fitness=nan, RMSE=nan
-Frame 35: OK, fitness=nan, RMSE=nan
-Frame 36: OK, fitness=nan, RMSE=nan
-Frame 37: OK, fitness=nan, RMSE=nan
-Frame 38: OK, fitness=nan, RMSE=nan
-Frame 39: OK, fitness=nan, RMSE=nan
-Frame 40: OK, fitness=nan, RMSE=nan
-Frame 41: OK, fitness=nan, RMSE=nan
-Frame 42: OK, fitness=nan, RMSE=nan
-Frame 43: OK, fitness=nan, RMSE=nan
-Frame 44: OK, fitness=nan, RMSE=nan
-Frame 45: OK, fitness=nan, RMSE=nan
-Frame 46: OK, fitness=nan, RMSE=nan
-Frame 47: OK, fitness=nan, RMSE=nan
-Frame 48: OK, fitness=nan, RMSE=nan
-Frame 49: OK, fitness=nan, RMSE=nan
-Frame 50: OK, fitness=nan, RMSE=nan
-Frame 51: OK, fitness=nan, RMSE=nan
-Frame 52: OK, fitness=nan, RMSE=nan
-Frame 53: OK, fitness=nan, RMSE=nan
-Frame 54: OK, fitness=nan, RMSE=nan
-Frame 55: OK, fitness=nan, RMSE=nan
-Frame 56: OK, fitness=nan, RMSE=nan
-Frame 57: OK, fitness=nan, RMSE=nan
-Frame 58: OK, fitness=nan, RMSE=nan
+Frame 1: Fitness=0.5792, RMSE=0.0564
+Frame 2: Fitness=0.7086, RMSE=0.0495
+Frame 3: Fitness=0.7432, RMSE=0.0473
+Frame 4: Fitness=0.1873, RMSE=0.0595
+Frame 5: Fitness=0.6919, RMSE=0.0465
+Frame 6: Fitness=0.6981, RMSE=0.0503
+Frame 7: Fitness=0.5908, RMSE=0.0535
+Frame 8: Fitness=0.6676, RMSE=0.0489
+Frame 9: Fitness=0.7352, RMSE=0.0504
+Frame 10: Fitness=0.7904, RMSE=0.0452
+Frame 11: Fitness=0.7756, RMSE=0.0442
+Frame 12: Fitness=0.1070, RMSE=0.0602
+Frame 13: Fitness=0.4547, RMSE=0.0567
+Frame 14: Fitness=0.5436, RMSE=0.0557
+Frame 15: Fitness=0.5288, RMSE=0.0546
+Frame 16: Fitness=0.1122, RMSE=0.0616
+Frame 17: Fitness=0.5388, RMSE=0.0564
+Frame 18: Fitness=0.5128, RMSE=0.0528
+Frame 19: Fitness=0.6042, RMSE=0.0547
+Frame 20: Fitness=0.6216, RMSE=0.0509
+Frame 21: Fitness=0.6384, RMSE=0.0489
+Frame 22: Fitness=0.6159, RMSE=0.0515
+Frame 23: Fitness=0.6458, RMSE=0.0505
+Frame 24: Fitness=0.5794, RMSE=0.0510
+Frame 25: Fitness=0.5696, RMSE=0.0525
+Frame 26: Fitness=0.5261, RMSE=0.0533
+Frame 27: Fitness=0.6335, RMSE=0.0506
+Frame 28: Fitness=0.5856, RMSE=0.0518
+Frame 29: Fitness=0.6716, RMSE=0.0542
+Frame 30: Fitness=0.5602, RMSE=0.0521
+Frame 31: Fitness=0.6166, RMSE=0.0515
+Frame 32: Fitness=0.6017, RMSE=0.0543
+Frame 33: Fitness=0.6299, RMSE=0.0484
+Frame 34: Fitness=0.5954, RMSE=0.0541
+Frame 35: Fitness=0.6351, RMSE=0.0503
+Frame 36: Fitness=0.4359, RMSE=0.0507
+Frame 37: Fitness=0.5872, RMSE=0.0526
+Frame 38: Fitness=0.7478, RMSE=0.0509
+Frame 39: Fitness=0.6835, RMSE=0.0501
+Frame 40: Fitness=0.7477, RMSE=0.0479
+Frame 41: Fitness=0.7236, RMSE=0.0463
+Frame 42: Fitness=0.7174, RMSE=0.0437
+Frame 43: Fitness=0.6420, RMSE=0.0494
+Frame 44: Fitness=0.6991, RMSE=0.0486
+Frame 45: Fitness=0.6366, RMSE=0.0458
+Frame 46: Fitness=0.5008, RMSE=0.0509
+Frame 47: Fitness=0.5900, RMSE=0.0485
+Frame 48: Fitness=0.5589, RMSE=0.0498
+Frame 49: Fitness=0.6693, RMSE=0.0500
+Frame 50: Fitness=0.6844, RMSE=0.0465
+Frame 51: Fitness=0.5791, RMSE=0.0469
+Frame 52: Fitness=0.6054, RMSE=0.0533
+Frame 53: Fitness=0.2602, RMSE=0.0589
+Frame 54: Fitness=0.5084, RMSE=0.0568
+Frame 55: Fitness=0.5213, RMSE=0.0545
+Frame 56: Fitness=0.6230, RMSE=0.0512
+Frame 57: Fitness=0.6601, RMSE=0.0499
+Frame 58: Fitness=0.4346, RMSE=0.0585
 
-Tempo totale esecuzione: 66.82 secondi
+Tempo totale esecuzione: 65.37 secondi
